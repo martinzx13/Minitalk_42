@@ -6,7 +6,7 @@
 /*   By: juan-pma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 16:20:59 by juan-pma          #+#    #+#             */
-/*   Updated: 2023/12/27 16:27:59 by juan-pma         ###   ########.fr       */
+/*   Updated: 2023/12/27 17:34:04 by juan-pma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_send_msg(int pid, char *msg)
 {
-	int		bytes_iter;
+	int				bytes_iter;
 	unsigned char	message_words;
 
 	while (*msg)
@@ -23,7 +23,7 @@ void	ft_send_msg(int pid, char *msg)
 		bytes_iter = 8;
 		while (bytes_iter--)
 		{
-			if(message_words & (1 << bytes_iter))
+			if (message_words & (1 << bytes_iter))
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
@@ -39,14 +39,14 @@ void	sign_handler(int pid)
 		ft_putstr("Signal Received \n");
 }
 
-void	ft_signals_init()
+void	ft_signals_init(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sigemptyset(&sa.sa_mask);
 	sa.sa_handler = &sign_handler;
 	sa.sa_flags = SA_SIGINFO;
-	if (sigaction(SIGUSR1, &sa, NULL) == - 1)
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_putstr("Error SIGUSER1 \n");
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		ft_putstr("Error SIGUSER2 \n");
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 {
 	int	pid;
 
-	if(argc == 3)
+	if (argc == 3)
 	{
 		if (!ft_checker(argv[1]))
 		{

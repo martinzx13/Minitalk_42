@@ -14,7 +14,7 @@
 
 void	ft_send_msg(int pid, char *msg)
 {
-	int		bytes_iter;
+	int				bytes_iter;
 	unsigned char	message_words;
 
 	while (*msg)
@@ -35,18 +35,18 @@ void	ft_send_msg(int pid, char *msg)
 
 void	sign_handler(int pid)
 {
-	if(pid == SIGUSR2)
+	if (pid == SIGUSR2)
 		ft_putstr("Signal Received \n");
 }
 
 void	ft_signals_init(void)
 {
-	struct	sigaction sa;
+	struct sigaction	sa;
 
 	sigemptyset(&sa.sa_mask);
 	sa.sa_handler = &sign_handler;
 	sa.sa_flags = SA_SIGINFO;
-	if (sigaction(SIGUSR1, &sa, NULL) == - 1)
+	if (sigaction(SIGUSR1, &sa, NULL) == -1) 
 		ft_putstr("Error SIGUSER1 \n");
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		ft_putstr("Error SIGUSER2 \n");
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 {
 	int	pid;
 
-	if(argc == 3)
+	if (argc == 3)
 	{
 		if (!ft_checker(argv[1]))
 		{

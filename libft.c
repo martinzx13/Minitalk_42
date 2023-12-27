@@ -16,7 +16,8 @@ int	ft_checker(char *s)
 {
 	while (*s)
 	{
-		if (!ft_isdigit(*s)) return (0);
+		if (!ft_isdigit(*s)) 
+			return (0);
 		s++;
 	}
 	return (1);
@@ -25,13 +26,13 @@ int	ft_checker(char *s)
 int	ft_isdigit(char s)
 {
 	if (s >= '0' && s <= '9') 
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
 void	ft_putnbr(unsigned int nbr)
 {
-	char	num;
+	char			num;
 	unsigned int	result;
 
 	result = 0;
@@ -47,7 +48,7 @@ void	ft_putstr(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])  
+	while (str[i])
 	{
 		write(1, &str[i], 1);
 		i++;

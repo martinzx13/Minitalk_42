@@ -14,7 +14,7 @@
 
 void	handle_message(int pid, siginfo_t *info, void *ucontent)
 {
-	static int	bit_handle = -1;
+	static int				bit_handle = -1;
 	static unsigned char	mssg;
 
 	(void) ucontent;
@@ -35,7 +35,7 @@ void	handle_message(int pid, siginfo_t *info, void *ucontent)
 
 void	ft_signhandle(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction = &handle_message;
@@ -48,9 +48,9 @@ void	ft_signhandle(void)
 
 int	main(void)
 {
-	write(STDOUT_FILENO, ANSI_BOLD ANSI_COLOR_MAGENTA, sizeof(ANSI_BOLD ANSI_COLOR_MAGENTA) - 1); 
+	write(1, ANSI_BOLD ANSI_MAGENTA, sizeof(ANSI_BOLD ANSI_MAGENTA) - 1); 
 	ft_putstr("\t_______This is my minitalk server______\n\n");
-	write(STDOUT_FILENO, ANSI_BOLD ANSI_COLOR_CYAN, sizeof(ANSI_BOLD ANSI_COLOR_CYAN) - 1);
+	write(1, ANSI_BOLD ANSI_CYAN, sizeof(ANSI_BOLD ANSI_CYAN) - 1);
 	ft_putstr("This is the PID Number : \n");
 	ft_putnbr(getpid());
 	write(1, "\n", 1);
