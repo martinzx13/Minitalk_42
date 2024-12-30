@@ -1,17 +1,17 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 
-CLIENT_SRC = client.c libft.c
-SERVER_SRC = server.c libft.c
+CLIENT_SRC = src/client.c utils/libft.c
+SERVER_SRC = src/server.c utils/libft.c
 
-CLIENT_SRC_BONUS = client_bonus.c libft.c
-SERVER_SRC_BONUS = server_bonus.c libft.c
+CLIENT_SRC_BONUS = src_bonus/client_bonus.c utils/libft.c
+SERVER_SRC_BONUS = src_bonus/server_bonus.c utils/libft.c
 
 CLIENT_OUT = client
 SERVER_OUT = server
 
-CLIENT_OUT_BONUS = client_bonus
-SERVER_OUT_BONUS = server_bonus
+CLIENT_OUT_BONUS = src_bonus/client_bonus
+SERVER_OUT_BONUS = src_bonus/server_bonus
 
 all: $(CLIENT_OUT) $(SERVER_OUT) $(CLIENT_OUT_BONUS) $(SERVER_OUT_BONUS)
 

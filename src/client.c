@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juan-pma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 16:28:28 by juan-pma          #+#    #+#             */
-/*   Updated: 2023/12/27 16:33:26 by juan-pma         ###   ########.fr       */
+/*   Created: 2023/12/27 16:20:59 by juan-pma          #+#    #+#             */
+/*   Updated: 2023/12/27 17:34:04 by juan-pma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../lib/minitalk.h"
 
 void	ft_send_msg(int pid, char *msg)
 {
@@ -46,7 +46,7 @@ void	ft_signals_init(void)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_handler = &sign_handler;
 	sa.sa_flags = SA_SIGINFO;
-	if (sigaction(SIGUSR1, &sa, NULL) == -1) 
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_putstr("Error SIGUSER1 \n");
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		ft_putstr("Error SIGUSER2 \n");

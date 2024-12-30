@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juan-pma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 16:58:16 by juan-pma          #+#    #+#             */
-/*   Updated: 2023/12/27 17:05:08 by juan-pma         ###   ########.fr       */
+/*   Created: 2023/12/27 16:43:10 by juan-pma          #+#    #+#             */
+/*   Updated: 2023/12/27 16:51:58 by juan-pma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../lib/minitalk.h"
 
 void	handle_message(int pid, siginfo_t *info, void *ucontent)
 {
@@ -23,13 +23,11 @@ void	handle_message(int pid, siginfo_t *info, void *ucontent)
 	if (pid == SIGUSR1)
 		mssg |= (1 << bit_handle);
 	bit_handle--;
-	if (bit_handle < 0)
+	if (bit_handle < 0 && info->si_pid)
 	{
 		write(STDOUT_FILENO, &mssg, 1);
 		mssg = 0;
 		bit_handle = -1;
-		if (kill(info->si_pid, SIGUSR2) == -1)
-			ft_putstr("Error SIGUSR1");
 	}
 }
 
@@ -48,7 +46,7 @@ void	ft_signhandle(void)
 
 int	main(void)
 {
-	write(1, ANSI_BOLD ANSI_MAGENTA, sizeof(ANSI_BOLD ANSI_MAGENTA) - 1); 
+	write(1, ANSI_BOLD ANSI_MAGENTA, sizeof(ANSI_BOLD ANSI_MAGENTA) - 1);
 	ft_putstr("\t_______This is my minitalk server______\n\n");
 	write(1, ANSI_BOLD ANSI_CYAN, sizeof(ANSI_BOLD ANSI_CYAN) - 1);
 	ft_putstr("This is the PID Number : \n");
